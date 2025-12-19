@@ -4,7 +4,7 @@
   width: var(--cWidth);
   justify-content: space-between;
   padding: 20px 0px;
-  margin-bottom: -100px;
+  margin-bottom: 0px;
   box-sizing: border-box;
   position: fixed;
   left: 50%;
@@ -80,4 +80,10 @@
   .navbar-title {
     font-size: 18px;
   }
+}
+
+.header ul a {
+  display: block;          /* 🔥 MOST IMPORTANT */
+  height: 20px;            /* text ke barabar */
+  overflow: visible;
 }

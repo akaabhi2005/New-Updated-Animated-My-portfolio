@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 
+/* ================= ROOT ================= */
 :root {
   font-family: "Geist", sans-serif;
-
   font-optical-sizing: auto;
   font-style: normal;
-  line-height: 1.5;
+
   scroll-behavior: smooth;
   color-scheme: light dark;
   color: #eae5ec;
@@ -15,14 +15,21 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* ⚠️ KEEP selection disabled globally */
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
+
   --accentColor: #c2a4ff;
   --backgroundColor: #0b080c;
+
+  /* viewport helpers */
   --vh: 100vh;
   --vh: 100svh;
 }
+
+/* ================= HEADINGS ================= */
 h1,
 h2,
 h3,
@@ -31,40 +38,59 @@ h5,
 h6 {
   font-family: "Geist", sans-serif;
 }
-body {
-  overflow: hidden;
-}
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-a:hover {
-  color: var(--accentColor);
-}
-main {
-  opacity: 1;
-  transition: 0.3s;
-}
-.main-active {
-  opacity: 0;
-  animation: fadeIn 1s 1;
-  animation-fill-mode: forwards;
-}
-@keyframes fadeIn {
-  100% {
-    opacity: 1;
-  }
-}
+
+/* ================= BODY (🔥 SCROLL FIX HERE) ================= */
 body {
   margin: 0;
   height: auto;
   background-color: #000;
   flex-grow: 1;
+
   --cWidth: calc(100% - 30px);
   --cMaxWidth: 1920px;
+
   max-width: 100vw;
-  overflow-x: hidden;
+
+  /* 🔥 THIS WAS THE MAIN ISSUE */
+  overflow-y: auto;      /* allow vertical scroll */
+  overflow-x: hidden;    /* prevent horizontal scroll */
 }
+
+/* React root should never lock scroll */
+#root {
+  min-height: 100vh;
+  overflow: visible;
+}
+
+/* ================= LINKS ================= */
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--accentColor);
+}
+
+/* ================= MAIN FADE ================= */
+main {
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.main-active {
+  opacity: 0;
+  animation: fadeIn 1s 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ================= WRAPPERS ================= */
 .main-body {
   max-width: 100vw;
   overflow-x: hidden;
@@ -75,15 +101,19 @@ body {
   margin: auto;
   position: relative;
 }
+
 .container1 {
   width: var(--cWidth);
   height: var(--vh);
   margin: auto;
   position: relative;
 }
+
+/* ================= TEXT SPLIT ================= */
 .split-line {
   overflow: hidden;
 }
+
 .split-h2 {
   overflow: hidden;
   display: flex;
@@ -91,33 +121,57 @@ body {
   flex-wrap: nowrap;
 }
 
+/* ================= TECH STACK ================= */
 .techstack {
   width: 100%;
   position: relative;
-  height: var(--vh);
+
+  /* 🔥 DO NOT hard-lock scroll */
+  min-height: 100vh;
+  height: auto;
+
   margin: auto;
   margin-top: 50px;
-  margin-bottom: -100px;
 }
 
 .techstack h2 {
   font-size: 80px;
   text-align: center;
-  position: absolute;
+  position: relative;
   width: 100%;
-  top: 120px;
-  left: 0;
+  margin-bottom: 20px;
   font-weight: 400;
   text-transform: uppercase;
 }
 
+/* Canvas should never block scroll */
+canvas {
+  pointer-events: none;
+}
+
+/* ================= NAVBAR SAFETY ================= */
+.header,
+.header * {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+/* ================= RESPONSIVE ================= */
 @media screen and (min-width: 768px) {
   body {
     --cWidth: 94%;
   }
 }
+
 @media screen and (max-width: 900px) {
   .techstack h2 {
     font-size: 40px;
+  }
+}
+
+/* ================= MOBILE 3D OFF ================= */
+@media (max-width: 768px) {
+  .character-model {
+    display: none !important;
   }
 }

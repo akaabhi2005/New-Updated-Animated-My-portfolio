@@ -4,17 +4,35 @@
   text-wrap: nowrap;
   overflow: hidden;
 }
+
 .hover-in {
   position: relative;
-  transition: 0.3s;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #eae5ec;              /* 🔥 default visible color */
 }
+
 .hover-in div {
   display: flex;
   position: absolute;
   top: 100%;
   left: 0;
+  color: #eae5ec;
 }
+
 .hover-link:hover .hover-in {
   transform: translateY(-100%);
   color: var(--accentColor);
+}
+@media (max-width: 768px) {
+  .hover-link {
+    overflow: visible;
+  }
+
+  .hover-in {
+    transform: none !important;
+  }
+
+  .hover-in div {
+    display: none;
+  }
 }

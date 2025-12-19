@@ -1,6 +1,30 @@
+/* ================= GLOBAL SAFETY ================= */
+html,
+body {
+  overflow-y: auto;       /* 🔥 SCROLL FIX */
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* React root should never block scroll */
+#root {
+  min-height: 100vh;
+  overflow: visible;
+}
+
+/* Canvas should never block scroll or mouse wheel */
+canvas {
+  pointer-events: none;
+}
+
+/* ================= LAYOUT ================= */
 .section-container {
   width: 1300px;
+  max-width: 100%;
+  margin: 0 auto;         /* center safely */
 }
+
+/* ================= TEXT RENDER ================= */
 .title,
 .para {
   font-kerning: none;
@@ -9,20 +33,25 @@
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
+
+/* ================= RESPONSIVE ================= */
 @media only screen and (max-width: 1600px) {
   .section-container {
     width: 1200px;
     max-width: calc(100% - 160px);
   }
 }
+
 @media only screen and (max-width: 1400px) {
   .section-container {
     width: 900px;
+    max-width: calc(100% - 120px);
   }
 }
+
 @media only screen and (max-width: 900px) {
   .section-container {
-    width: 500px;
+    width: 100%;
     max-width: var(--cWidth);
   }
 }

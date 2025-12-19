@@ -60,12 +60,12 @@ const SocialIcons = () => {
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
-          <a href="https://github.com" target="_blank">
+          <a href="https://github.com/akaabhi2005?tab=repositories" target="_blank">
             <FaGithub />
           </a>
         </span>
         <span>
-          <a href="https://www.linkedin.com" target="_blank">
+          <a href="https://www.linkedin.com/in/abhishek-soni-06725326b/" target="_blank">
             <FaLinkedinIn />
           </a>
         </span>
@@ -75,17 +75,23 @@ const SocialIcons = () => {
           </a>
         </span>
         <span>
-          <a href="https://www.instagram.com" target="_blank">
+          <a href="https://www.instagram.com/aka_abhi0001/" target="_blank">
             <FaInstagram />
           </a>
         </span>
       </div>
-      <a className="resume-button" href="#">
-        <HoverLinks text="RESUME" />
-        <span>
-          <TbNotes />
-        </span>
-      </a>
+      <a
+  className="resume-button"
+  href="/resume/Abhishek_Soni_Resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <HoverLinks text="RESUME" />
+  <span>
+    <TbNotes />
+  </span>
+</a>
+
     </div>
   );
 };
